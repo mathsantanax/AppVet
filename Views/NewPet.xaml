@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppVet.Views.NewPet"
+             Title="Novo Pet"
+             Background="#C6EDF5">
+    
+    <StackLayout>
+            <Entry Placeholder="Nome do Tutor" Grid.Row="0" IsPassword="False" PlaceholderColor="Gray" Margin="10" TextColor="Black"/>
+            <Entry Placeholder="Numero" Grid.Row="0" IsPassword="False" PlaceholderColor="Gray" Margin="10" TextColor="Black"/>
+            <Entry Placeholder="Microchip" Grid.Row="0" IsPassword="False" PlaceholderColor="Gray" Margin="10" TextColor="Black"/>
+            <Entry Placeholder="Nome do Pet" IsPassword="False" PlaceholderColor="Gray" Grid.Row="1" Margin="10" TextColor="Black"/>
+            <Picker x:Name="especia" Title="Selecione a Espécie" TextColor="Black" TitleColor="Gray" Margin="10">
+                <Picker.Items>
+                    <x:String>Cachorro</x:String>
+                    <x:String>Gato</x:String>
+                    <x:String>Periquito</x:String>
+                </Picker.Items>
+            </Picker>
+            <Picker x:Name="raca" Title="Selecione a Raça" TextColor="Black" TitleColor="Gray" Margin="10">
+                <Picker.Items>
+                    <x:String>Jack Russel</x:String>
+                    <x:String>Spitz</x:String>
+                    <x:String>lulu da pomerania</x:String>
+                    <x:String>Shitzu</x:String>
+                </Picker.Items>
+            </Picker>
+            <Entry Placeholder="Idade do Pet" IsPassword="False" PlaceholderColor="Gray" Grid.Row="1" Margin="10" TextColor="Black"/>
+            <Entry Placeholder="Peso" IsPassword="False" PlaceholderColor="Gray" Grid.Row="1" Margin="10" TextColor="Black"/>
+            <Picker x:Name="sexagem" Title="Selecione o Sexo" TextColor="Black" TitleColor="Gray" Margin="10">
+                <Picker.Items>
+                    <x:String>Macho</x:String>
+                    <x:String>Femea</x:String>
+                </Picker.Items>
+            </Picker>
+        <Button Text="Cadastrar" 
+                Padding="20" 
+                FontSize="18" 
+                Grid.Row="1" 
+                Margin="20" 
+                CornerRadius="20" 
+                BackgroundColor="#51EABB"/>
+    </StackLayout>
+
+</ContentPage>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="AppVet.Views.NewService"
+       xmlns:converters="clr-namespace:AppVet.Modules"
+       Title="Adicionar Serviço"
+       Background="#C6EDF5">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:TelefoneFormatterConverter x:Key="TelefoneFormatterConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <Grid ColumnDefinitions="*" RowDefinitions="Auto, Auto, Auto, Auto">
+            <CollectionView x:Name="PetColletionView" ItemsSource="{Binding this}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" HasShadow="True" Margin="10,5" CornerRadius="10" BorderColor="LightGray">
+                            <VerticalStackLayout>
+                                <Image HeightRequest="120" WidthRequest="120" Grid.RowSpan="6" Margin="0,0,10,0"
+                                               VerticalOptions="CenterAndExpand" Aspect="AspectFill">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="Cachorro">
+                                                <Setter Property="Source" Value="cachorro.png" />
+                                            </DataTrigger>
+                                            <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="Gato">
+                                                <Setter Property="Source" Value="gato.png" />
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+
+                                <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
+                                    <Label Text="Pet: " FontSize="20" FontAttributes="Bold" TextColor="Orange" Grid.Column="0" Grid.Row="0"/>
+                                    <Label Text="{Binding nomePet}" FontSize="20" FontAttributes="Bold" TextColor="Orange" Grid.Column="1" Grid.Row="0"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto,Auto, Auto, Auto" HorizontalOptions="Center" Padding="5">
+                                    <Label Text="Raça: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
+                                    <Label Text= "{Binding raca}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="1" VerticalOptions="Start"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
+                                    <Label Text="Tutor: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
+                                    <Label Text="{Binding tutor}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="2" />
+                                </Grid>
+                                
+                                <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
+                                    <Label Text="Celular: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
+                                    <Label Text="{Binding tel, Converter={StaticResource TelefoneFormatterConverter}} " FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="2" />
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
+                                    <Label Text="Ultima Vacinação: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
+                                    <Label Text="{Binding dataVacinacao, StringFormat='{0:dd/MM/yyyy}'}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="5" />
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
+                                    <Picker x:Name="TypeService" Title="Tipo de Serviço" HorizontalTextAlignment="Center" WidthRequest="250" TextColor="Black" TitleColor="Gray">
+                                        <Picker.Items>
+                                            <x:String>V10</x:String>
+                                            <x:String>V8</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+                                </Grid>
+                                
+                                <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
+                                    <Picker x:Name="Laboratorio" Title="Laboratório" HorizontalTextAlignment="Center" WidthRequest="250" TextColor="Black" TitleColor="Gray">
+                                        <Picker.Items>
+                                            <x:String>Zoetis</x:String>
+                                            <x:String>Pharma</x:String>
+                                        </Picker.Items>
+                                    </Picker>
+                                </Grid>
+                                
+                                <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
+                                    <DatePicker MinimumDate="{Binding MinDate}"
+                                        MaximumDate="{Binding MaxDate}"
+                                        Date="{Binding SelectedDate}" TextColor="Gray" FontSize="18" FontAttributes="Bold"/>
+                                </Grid>
+
+                                <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
+                                    <Label Text="R$ 00,00" FontSize="20" FontAttributes="Bold" TextColor="Gray"/>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+                        <Button Text="Cadastrar" 
+                                Padding="20" 
+                                FontSize="18" 
+                                Grid.Row="1" 
+                                Margin="20" 
+                                CornerRadius="20" 
+                                BackgroundColor="#51EABB"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

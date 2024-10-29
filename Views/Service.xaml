@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="AppVet.Views.Service"
+       Title="Vet Serviço"
+       Background="#C6EDF5">
+
+    <Grid RowDefinitions="Auto, *">
+        <!-- Duas linhas, uma fixa e uma que ocupa o restante do espaço -->
+
+        <!-- Parte Fixa - Cabeçalho -->
+        <StackLayout Grid.Row="0" Padding="5" Spacing="10">
+            <Frame>
+                <Grid ColumnDefinitions="Auto, *, Auto" RowDefinitions="Auto, Auto, Auto">
+                    <!-- Botão "Prev" -->
+                    <Button Text="Prev"  Grid.Row="0" Grid.Column="0" WidthRequest="60" HorizontalOptions="Start"/>
+
+                    <!-- Label central (mês e ano) -->
+                    <Label Text="Outubro 2024" Padding="5" FontSize="20" TextColor="Black" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" />
+
+                    <!-- Botão "Next" -->
+                    <Button Text="Next" Grid.Row="0" Grid.Column="2" WidthRequest="60" HorizontalOptions="End"/>
+
+                    <!-- Informações de Totais -->
+                    <Label Text="Serviço Mês: " Padding="5" FontSize="15" TextColor="Black" Grid.Row="1" Grid.Column="0"/>
+                    <Label Text="20" Padding="5" FontSize="15" TextColor="Black" Grid.Row="1" Grid.Column="2" HorizontalOptions="End"/>
+
+                    <!-- Informações de Total -->
+                    <Label Text="Total: " Padding="5" FontSize="15" TextColor="Black" Grid.Row="2" Grid.Column="0"/>
+                    <Label Text="2.000,00" Padding="5" FontSize="15" TextColor="Black" Grid.Row="2" Grid.Column="2" HorizontalOptions="End"/>
+                </Grid>
+            </Frame>
+
+            <ContentView>
+                <Label Text="Ultimos Serviços" HorizontalOptions="Center" FontSize="20" FontAttributes="Bold" TextColor="#9880e5"/>
+            </ContentView>
+        </StackLayout>
+
+        <!-- Parte Rolável - Lista de Serviços -->
+        <ScrollView Grid.Row="1">
+            <StackLayout>
+                <!-- Repetição de Frames para cada serviço -->
+                <Frame CornerRadius="10" Padding="5" Margin="5" HasShadow="True" BorderColor="LightGray">
+                    <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                        <!-- Imagem do Pet -->
+                        <Image Source="dog.png" 
+                                                   HeightRequest="80" WidthRequest="80" 
+                                                   Grid.RowSpan="6"
+                                                   Margin="0,0,10,0"
+                                                   VerticalOptions="Center"
+                                                   Aspect="AspectFill"/>
+
+                        <!-- Nome do Pet -->
+                        <Label Text="Marcos Paulo" 
+                                                   FontSize="20" FontAttributes="Bold"
+                                                   TextColor="Orange" 
+                                                   Grid.Column="1" Grid.Row="0" />
+
+                        <!-- Espécie do Pet -->
+                        <Label Text="Jack Russel" 
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="1" />
+
+                        <!-- Nome do Tutor -->
+                        <Label Text="Tutor: João Silva" 
+                                                   FontSize="16" 
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="2" />
+
+                        <!-- Última Vacinação -->
+                        <Label Text="Última Vacinação: 20/10/2023" 
+                                                   FontSize="16" 
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="4" />
+
+                        <!-- Tipo de Serviço -->
+                        <Label Text="Serviço: V10+AR Zoetis / Virbac"
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="5"/>
+
+                        <!-- Valor do Serviço -->
+                        <Label Text="Valor: 60,00"
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="6"/>
+                    </Grid>
+                </Frame>
+                <Frame CornerRadius="10" Padding="5" Margin="5" HasShadow="True" BorderColor="LightGray">
+                    <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                        <!-- Imagem do Pet -->
+                        <Image Source="dog.png" 
+                                                   HeightRequest="80" WidthRequest="80" 
+                                                   Grid.RowSpan="6"
+                                                   Margin="0,0,10,0"
+                                                   VerticalOptions="Center"
+                                                   Aspect="AspectFill"/>
+
+                        <!-- Nome do Pet -->
+                        <Label Text="Marcos Paulo" 
+                                                   FontSize="20" FontAttributes="Bold"
+                                                   TextColor="Orange" 
+                                                   Grid.Column="1" Grid.Row="0" />
+
+                        <!-- Espécie do Pet -->
+                        <Label Text="Jack Russel" 
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="1" />
+
+                        <!-- Nome do Tutor -->
+                        <Label Text="Tutor: João Silva" 
+                                                   FontSize="16" 
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="2" />
+
+                        <!-- Última Vacinação -->
+                        <Label Text="Última Vacinação: 20/10/2023" 
+                                                   FontSize="16" 
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="4" />
+
+                        <!-- Tipo de Serviço -->
+                        <Label Text="Serviço: V10+AR Zoetis / Virbac"
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="5"/>
+
+                        <!-- Valor do Serviço -->
+                        <Label Text="Valor: 60,00"
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="6"/>
+                    </Grid>
+                </Frame>
+                <Frame CornerRadius="10" Padding="5" Margin="5" HasShadow="True" BorderColor="LightGray">
+                    <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                        <!-- Imagem do Pet -->
+                        <Image Source="dog.png" 
+                                                   HeightRequest="80" WidthRequest="80" 
+                                                   Grid.RowSpan="6"
+                                                   Margin="0,0,10,0"
+                                                   VerticalOptions="Center"
+                                                   Aspect="AspectFill"/>
+
+                        <!-- Nome do Pet -->
+                        <Label Text="Marcos Paulo" 
+                                                   FontSize="20" FontAttributes="Bold"
+                                                   TextColor="Orange" 
+                                                   Grid.Column="1" Grid.Row="0" />
+
+                        <!-- Espécie do Pet -->
+                        <Label Text="Jack Russel" 
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="1" />
+
+                        <!-- Nome do Tutor -->
+                        <Label Text="Tutor: João Silva" 
+                                                   FontSize="16" 
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="2" />
+
+                        <!-- Última Vacinação -->
+                        <Label Text="Última Vacinação: 20/10/2023" 
+                                                   FontSize="16" 
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="4" />
+
+                        <!-- Tipo de Serviço -->
+                        <Label Text="Serviço: V10+AR Zoetis / Virbac"
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="5"/>
+
+                        <!-- Valor do Serviço -->
+                        <Label Text="Valor: 60,00"
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="6"/>
+                    </Grid>
+                </Frame>
+                <Frame CornerRadius="10" Padding="5" Margin="5" HasShadow="True" BorderColor="LightGray">
+                    <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                        <!-- Imagem do Pet -->
+                        <Image Source="dog.png" 
+                                                   HeightRequest="80" WidthRequest="80" 
+                                                   Grid.RowSpan="6"
+                                                   Margin="0,0,10,0"
+                                                   VerticalOptions="Center"
+                                                   Aspect="AspectFill"/>
+
+                        <!-- Nome do Pet -->
+                        <Label Text="Marcos Paulo" 
+                                                   FontSize="20" FontAttributes="Bold"
+                                                   TextColor="Orange" 
+                                                   Grid.Column="1" Grid.Row="0" />
+
+                        <!-- Espécie do Pet -->
+                        <Label Text="Jack Russel" 
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="1" />
+
+                        <!-- Nome do Tutor -->
+                        <Label Text="Tutor: João Silva" 
+                                                   FontSize="16" 
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="2" />
+
+                        <!-- Última Vacinação -->
+                        <Label Text="Última Vacinação: 20/10/2023" 
+                                                   FontSize="16" 
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="4" />
+
+                        <!-- Tipo de Serviço -->
+                        <Label Text="Serviço: V10+AR Zoetis / Virbac"
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="5"/>
+
+                        <!-- Valor do Serviço -->
+                        <Label Text="Valor: 60,00"
+                                                   FontSize="16"
+                                                   TextColor="Gray"
+                                                   Grid.Column="1" Grid.Row="6"/>
+                    </Grid>
+                </Frame>
+                <!-- Repetição dos demais Frames aqui -->
+                <!-- Adicione os outros Frames do mesmo jeito -->
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
