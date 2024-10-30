@@ -13,10 +13,13 @@ namespace AppVet.DTO
 
         [PrimaryKey, AutoIncrement] 
         public int Id { get; set; }
-        Pet Pet { get; set; } = default!;
-        Tutor Tutor { get; set; } = default!;
         public DateTime dataVacinacao { get; set; } = default!;
         public DateTime dataProximaVacinacao { get; set; } = default!;
-        public Service Service { get; set; } = default!;
+        [ForeignKey(nameof(IdTutor))]
+        public int IdTutor { get; set; }
+        [ForeignKey(nameof(IdService))]
+        public int IdPet { get; set; }
+        [ForeignKey(nameof(IdService))]
+        public int IdService { get; set; }
     }
 }

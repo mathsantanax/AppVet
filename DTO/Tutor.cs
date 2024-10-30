@@ -14,7 +14,10 @@ namespace AppVet.DTO
         public int Id { get; set; }
         public string tutor { get; set; } = default!;
         public decimal tel { get; set; } = default!;
-        public Pet Pet { get; set; } = default!;
-        public PetServico PetServico { get; set; } = default!;
+        [ForeignKey(nameof(IdPet))]
+        public int IdPet {  get; set; }
+
+        [ForeignKey(nameof(IdServico))]
+        public int IdServico { get; set; }
     }
 }

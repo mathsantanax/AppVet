@@ -22,10 +22,10 @@
                                 <Image HeightRequest="120" WidthRequest="120" Grid.RowSpan="6" Margin="0,0,10,0"
                                                VerticalOptions="CenterAndExpand" Aspect="AspectFill">
                                         <Image.Triggers>
-                                            <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="Cachorro">
+                                            <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="CACHORRO">
                                                 <Setter Property="Source" Value="cachorro.png" />
                                             </DataTrigger>
-                                            <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="Gato">
+                                            <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="GATO">
                                                 <Setter Property="Source" Value="gato.png" />
                                             </DataTrigger>
                                         </Image.Triggers>
@@ -57,7 +57,7 @@
                                 </Grid>
 
                                 <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
-                                    <Picker x:Name="TypeService" Title="Tipo de Serviço" HorizontalTextAlignment="Center" WidthRequest="250" TextColor="Black" TitleColor="Gray">
+                                    <Picker x:Name="Focused" Title="Tipo de Serviço" HorizontalTextAlignment="Center" WidthRequest="250" TextColor="Black" TitleColor="Gray">
                                         <Picker.Items>
                                             <x:String>V10</x:String>
                                             <x:String>V8</x:String>
@@ -66,7 +66,7 @@
                                 </Grid>
                                 
                                 <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
-                                    <Picker x:Name="Laboratorio" Title="Laboratório" HorizontalTextAlignment="Center" WidthRequest="250" TextColor="Black" TitleColor="Gray">
+                                    <Picker x:Name="Laboratorio" Title="Selecione o Laboratório" HorizontalTextAlignment="Center" WidthRequest="250" TextColor="Black" TitleColor="Gray">
                                         <Picker.Items>
                                             <x:String>Zoetis</x:String>
                                             <x:String>Pharma</x:String>
@@ -74,11 +74,13 @@
                                     </Picker>
                                 </Grid>
                                 
-                                <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
-                                    <Label Text="Selecione a data da próxima vacina"/>
+                                <Grid ColumnDefinitions="Auto,Auto"
+                                      RowDefinitions="Auto, Auto"
+                                      HorizontalOptions="Center" Padding="5">
+                                    <Label Text="Selecione a data da próxima vacina" TextColor="Gray" Grid.Row="0"/>
                                     <DatePicker MinimumDate="{Binding MinDate}"
                                         MaximumDate="{Binding MaxDate}"
-                                        Date="{Binding SelectedDate}" TextColor="Gray" FontSize="18" FontAttributes="Bold"/>
+                                        Date="{Binding SelectedDate}" HorizontalOptions="Center" TextColor="Gray" FontSize="18" FontAttributes="Bold" Grid.Row="1"/>
                                 </Grid>
 
                                 <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">

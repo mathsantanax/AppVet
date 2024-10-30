@@ -1,5 +1,6 @@
 
 using AppVet.DTO;
+using AppVet.ModelView;
 using System.ComponentModel.Design;
 using System.Globalization;
 
@@ -7,7 +8,7 @@ namespace AppVet.Views;
 
 public partial class NewService : ContentPage
 {
-	public NewService(Pet pet)
+	public NewService(PetAndTutor pet)
 	{
 		InitializeComponent();
 		PetColletionView.ItemsSource = new object[] { pet };

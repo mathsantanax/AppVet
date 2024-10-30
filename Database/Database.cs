@@ -18,6 +18,12 @@ namespace AppVet.Database
             _database = new SQLiteAsyncConnection(dbPath);
             try
             {
+                //_database.DropTableAsync<Raca>().Wait();
+                //_database.DropTableAsync<Tutor>().Wait();
+                //_database.DropTableAsync<Pet>().Wait();
+                //_database.DropTableAsync<Service>().Wait();
+                //_database.DropTableAsync<PetServico>().Wait();
+
                 _database.CreateTableAsync<Raca>().Wait();
                 _database.CreateTableAsync<Tutor>().Wait();
                 _database.CreateTableAsync<Pet>().Wait();
@@ -30,9 +36,22 @@ namespace AppVet.Database
             }
         }
 
+        public async Task<Pet> SelectPet(int petId)
+        {
+            return await _database.Table<Pet>().FirstOrDefaultAsync(p => p.Id == petId);
+        }
+        public async Task<Pet> SelectedPet(Pet pet)
+        {
+            return await _database.Table<Pet>().FirstOrDefaultAsync(p => p.nomePet == pet.nomePet && p.especie ==pet.especie && p.idade == pet.idade);
+        }
+
         public async Task<List<Tutor>> ListarTutor()
         {
             return await _database.Table<Tutor>().ToListAsync();
+        }
+        public async Task<List<Pet>> ListarPet()
+        {
+            return await _database.Table<Pet>().ToListAsync();
         }
 
         public Task<List<Raca>> ListarRaca()
@@ -40,9 +59,9 @@ namespace AppVet.Database
             return _database.Table<Raca>().ToListAsync();
         }
 
-        public Task<int> SaveTutor(Tutor tutor)
+        public async Task<int> SaveTutor(Tutor tutor)
         {
-            return _database.InsertAsync(tutor);
+            return await _database.InsertAsync(tutor);
         }        
         public Task<int> SavePet(Pet pet)
         {
@@ -52,7 +71,9 @@ namespace AppVet.Database
         {
             return _database.InsertAsync(raca);
         }
-        
-        
+        public async Task<Raca> SelectRaca(int racaId)
+        {
+            return await _database.Table<Raca>().FirstOrDefaultAsync(p => p.Id == racaId);
+        }
     }
 }

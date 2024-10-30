@@ -11,6 +11,6 @@ namespace AppVet.DTO
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string raca { get; set; }
+        public string raca { get; set; } = default!;
     }
 }

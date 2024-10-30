@@ -18,6 +18,7 @@ namespace AppVet.DTO
         public int idade { get; set; } = default!;
         public string sexo { get; set; } = default!;
         public float peso { get; set; } = default!;
-        public Raca raca { get; set; } = default!;
+        [ForeignKey(nameof(IdRaca))]
+        public int IdRaca { get; set; } = default!;
     }
 }

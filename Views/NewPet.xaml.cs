@@ -22,6 +22,7 @@ public partial class NewPet : ContentPage
         {
             raca.raca = novaRaca.ToUpper();
             service.CadastrarRaca(raca);
+            DisplayAlert($"Raça Cadastrada Com sucesso \n{raca.raca}", "Alerta", "Ok");
             OnListRaca();
         }
     }
@@ -58,30 +59,51 @@ public partial class NewPet : ContentPage
     }
 
 
-    private void OnAddPetAndTutor(object sender, EventArgs e)
+    private async void OnAddPetAndTutor(object sender, EventArgs e)
     {
-
-        Tutor tutor = new Tutor {
-            tutor = EntryTutor.Text.ToUpper(),
-            tel = decimal.Parse(EntryCel.Text),
-            Pet = new Pet
-            {
-                nomePet = EntryNomePet.Text,
-                IdMicrochip = EntryMicrochip.Text,
-                especie = especiePicker.SelectedItem?.ToString(),
-                idade = int.Parse(EntryIdadePet.Text),
-                sexo = sexagemPicker.SelectedItem?.ToString(),
-                peso = float.Parse(entryPeso.Text),
-                raca = new Raca
-                {
-                    raca = racaPicker.SelectedItem.ToString(),
-                },
-            },
-        };
-        if(ValidarCampos())
+        Pet pet = new Pet
         {
-            service.CadastrarPetETutor(tutor);
-            DisplayAlert("Cadastro Criado com Sucesso", "Alerta", "Ok");
+            nomePet = EntryNomePet.Text.ToUpper(),
+            IdMicrochip = EntryMicrochip.Text,
+            especie = especiePicker.SelectedItem?.ToString().ToUpper(),
+            idade = int.Parse(EntryIdadePet.Text),
+            sexo = sexagemPicker.SelectedItem.ToString().ToUpper(),
+            peso = float.Parse(entryPeso.Text),
+            IdRaca = racaPicker.SelectedIndex + 1,
+        };
+
+
+        if(pet != null)
+        {
+            service.CadastrarPet(pet);
+            DisplayAlert("Alert", $"{pet.nomePet}", "Ok");
+
+
+            var retornoPet = await service.SelectedPet(pet);
+            DisplayAlert("Alert", $"{retornoPet.Id}", "Ok");
+
+            if(retornoPet != null)
+            {
+                Tutor tutor = new Tutor
+                {
+                    IdPet = retornoPet.Id,
+                    tutor = EntryTutor.Text.ToUpper(),
+                    tel = decimal.Parse(EntryCel.Text),
+                };
+                service.CadastrarTutor(tutor);
+                DisplayAlert("Cadastro Criado com Sucesso", "Alerta", "Ok");
+                await Navigation.PopAsync();
+            }
+            else
+            {
+                DisplayAlert("Alguma coisa esta nula no retorno do pet", "Alerta", "Ok");
+            }
         }
+        else
+        {
+            DisplayAlert("Alguma coisa esta nula", "Alerta", "Ok");
+        }
+
+
     }
 }

@@ -15,8 +15,8 @@
             <Entry x:Name="EntryNomePet" Placeholder="Nome do Pet" IsPassword="False" PlaceholderColor="Gray" Grid.Row="3" Margin="5" TextColor="Black"/>
             <Picker x:Name="especiePicker" Grid.Row="4" Title="Selecione a Espécie" TextColor="Black" TitleColor="Gray" Margin="5">
                 <Picker.Items>
-                    <x:String>Cachorro</x:String>
-                    <x:String>Gato</x:String>
+                    <x:String>CACHORRO</x:String>
+                        <x:String>GATO</x:String>
                 </Picker.Items>
             </Picker>
             <Picker x:Name="racaPicker" Grid.Row="5" Title="Selecione a Raça" TextColor="Black" TitleColor="Gray" Margin="5">
@@ -28,8 +28,8 @@
             <Entry x:Name="entryPeso" Placeholder="Peso" Keyboard="Numeric" IsPassword="False" PlaceholderColor="Gray" Grid.Row="7" Margin="5" TextColor="Black"/>
                 <Picker x:Name="sexagemPicker" Grid.Row="8" Title="Selecione o Sexo" TextColor="Black" TitleColor="Gray" Margin="10">
                 <Picker.Items>
-                    <x:String>Macho</x:String>
-                    <x:String>Femea</x:String>
+                    <x:String>MACHO</x:String>
+                        <x:String>FEMÊA</x:String>
                 </Picker.Items>
             </Picker>
             </Grid>

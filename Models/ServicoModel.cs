@@ -19,9 +19,13 @@ namespace AppVet.Models
             _data = new Data(dbPath);
 
         }
-        public async void CadastrarPetETutor(Tutor tutor)
+        public async void CadastrarTutor(Tutor tutor)
         {
             await _data.SaveTutor(tutor);
+        }
+        public async void CadastrarPet(Pet pet)
+        {
+            await _data.SavePet(pet);
         }
 
         public async void CadastrarRaca(Raca raca)
@@ -34,7 +38,7 @@ namespace AppVet.Models
             throw new NotImplementedException();
         }
 
-        public async Task<List<Tutor>> ListarPetETutor()
+        public async Task<List<Tutor>> ListarTutor()
         {
             return await _data.ListarTutor();
         }
@@ -53,5 +57,26 @@ namespace AppVet.Models
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Pet> SelectPet(int id)
+        {
+            return await _data.SelectPet(id);
+        }
+
+        public async Task<Raca> SelectRaca(int id)
+        {
+            return await _data.SelectRaca(id);
+        }
+
+        public async Task<List<Pet>> ListarPet()
+        {
+            return await _data.ListarPet();
+        }
+
+        public async Task<Pet> SelectedPet(Pet pet)
+        {
+            return await _data.SelectedPet(pet);
+        }
+
     }
 }

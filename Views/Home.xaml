@@ -8,7 +8,7 @@
     <ContentPage.Content>
         <Grid ColumnDefinitions="*, Auto">
             <RefreshView IsRefreshing="{Binding IsRefreshing}"
-                         Command="{Binding RefreshCommand}" Grid.Column="0">
+                         Command="{Binding executeRefreshCommand}" Grid.Column="0" >
                 <CollectionView x:Name="PetsCollectionView" ItemsSource="{Binding cadastros}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
@@ -24,10 +24,10 @@
                                         <Image HeightRequest="80" WidthRequest="80" Grid.RowSpan="6" Margin="0,0,10,0"
                                            VerticalOptions="CenterAndExpand" Aspect="AspectFill">
                                             <Image.Triggers>
-                                                <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="Cachorro">
+                                                <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="CACHORRO">
                                                     <Setter Property="Source" Value="cachorro.png" />
                                                 </DataTrigger>
-                                                <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="Gato">
+                                                <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="GATO">
                                                     <Setter Property="Source" Value="gato.png" />
                                                 </DataTrigger>
                                             </Image.Triggers>
