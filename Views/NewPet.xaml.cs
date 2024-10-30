@@ -22,7 +22,7 @@ public partial class NewPet : ContentPage
         {
             raca.raca = novaRaca.ToUpper();
             service.CadastrarRaca(raca);
-            DisplayAlert($"Raça Cadastrada Com sucesso \n{raca.raca}", "Alerta", "Ok");
+            await DisplayAlert($"Raça Cadastrada Com sucesso \n{raca.raca}", "Alerta", "Ok");
             OnListRaca();
         }
     }
@@ -76,11 +76,11 @@ public partial class NewPet : ContentPage
         if(pet != null)
         {
             service.CadastrarPet(pet);
-            DisplayAlert("Alert", $"{pet.nomePet}", "Ok");
+            await DisplayAlert("Alert", $"{pet.nomePet}", "Ok");
 
 
             var retornoPet = await service.SelectedPet(pet);
-            DisplayAlert("Alert", $"{retornoPet.Id}", "Ok");
+            await DisplayAlert("Alert", $"{retornoPet.Id}", "Ok");
 
             if(retornoPet != null)
             {
@@ -91,17 +91,17 @@ public partial class NewPet : ContentPage
                     tel = decimal.Parse(EntryCel.Text),
                 };
                 service.CadastrarTutor(tutor);
-                DisplayAlert("Cadastro Criado com Sucesso", "Alerta", "Ok");
+                await DisplayAlert("Cadastro Criado com Sucesso", "Alerta", "Ok");
                 await Navigation.PopAsync();
             }
             else
             {
-                DisplayAlert("Alguma coisa esta nula no retorno do pet", "Alerta", "Ok");
+                await DisplayAlert("Alguma coisa esta nula no retorno do pet", "Alerta", "Ok");
             }
         }
         else
         {
-            DisplayAlert("Alguma coisa esta nula", "Alerta", "Ok");
+            await DisplayAlert("Alguma coisa esta nula", "Alerta", "Ok");
         }
 
 

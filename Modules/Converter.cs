@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppVet.Modules
 {
-    internal class TelefoneFormatterConverter : IValueConverter
+    internal class TelefoneFormatterConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
