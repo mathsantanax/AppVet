@@ -1,4 +1,5 @@
-﻿
+﻿using AppVet.Database;
+
 namespace AppVet
 {
     public partial class App : Application
@@ -6,7 +7,6 @@ namespace AppVet
         public App()
         {
             InitializeComponent();
-
             MainPage = new AppShell();
         }
     }

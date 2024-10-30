@@ -1,5 +1,6 @@
 using AppVet.DTO;
 using System.ComponentModel;
+using AppVet.Models;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Input;
@@ -18,6 +19,7 @@ public partial class Home : ContentPage, INotifyPropertyChanged
             OnPropertyChanged(nameof(IsRefreshing));
         }
     }
+    Models.ServicoModel ServicoModel = new ServicoModel();
 
     public ICommand RefreshCommand { get; }
     public ICommand ItemSelectedCommand { get; }
@@ -31,111 +33,16 @@ public partial class Home : ContentPage, INotifyPropertyChanged
         ItemSelectedCommand = new Command<Pet>(OnItemSelected);
         cadastros();
     }
-    public List<Pet> CreatePet()
-	{
-        return new List<Pet>
-        { 
-            new Pet
-            {
-                tutor = "Matheus Augusto Santana",
-                tel = 13981639944,
-                nomePet = "Broinha",
-                especie = "Cachorro",
-                raca = "Jack Russel",
-                idade = 2,
-                sexo = "Macho",
-                peso = 8.5f,
-                dataVacinacao = DateTime.Now.Date.AddDays(-360),
-                dataProximaVacinacao = DateTime.Now.Date.AddDays(30),
-                vacina = "Raiva",
-                laboratorio = "Zoetis"
-            },
-            new Pet
-            {
-                tutor = "Ieda Cristina dos Santos Duclos",
-                tel = 13982104931,
-                nomePet = "Princess",
-                especie = "Cachorro",
-                raca = "Lulu da pomerania",
-                idade = 1,
-                sexo = "Femea",
-                peso = 2.5f,
-                dataVacinacao = DateTime.Now.Date.AddDays(-360),
-                dataProximaVacinacao = DateTime.Now.Date.AddDays(30),
-                vacina = "Raiva",
-                laboratorio = "Zoetis"
-            },
-            new Pet
-            {
-                tutor = "Maria José da Silva",
-                tel = 139815153315,
-                nomePet = "Geleia",
-                especie = "Gato",
-                raca = "SRD",
-                idade = 3,
-                sexo = "Femea",
-                peso = 2.5f,
-                dataVacinacao = DateTime.Now.Date.AddDays(-360),
-                dataProximaVacinacao = DateTime.Now.Date.AddDays(30),
-                vacina = "Raiva",
-                laboratorio = "Zoetis"
-            },
-            new Pet
-            {
-                tutor = "Lucia Duclos",
-                tel = 139815153315,
-                nomePet = "Sexta Feira",
-                especie = "Gato",
-                raca = "SRD",
-                idade = 6,
-                sexo = "Femea",
-                peso = 2.5f,
-                dataVacinacao = DateTime.Now.Date.AddDays(-360),
-                dataProximaVacinacao = DateTime.Now.Date.AddDays(30),
-                vacina = "Raiva",
-                laboratorio = "Zoetis"
-            },
-            new Pet
-            {
-                tutor = "Lucia Duclos",
-                tel = 139815153315,
-                nomePet = "Lichia",
-                especie = "Gato",
-                raca = "SRD",
-                idade = 4,
-                sexo = "Femea",
-                peso = 2.5f,
-                dataVacinacao = DateTime.Now.Date.AddDays(-360),
-                dataProximaVacinacao = DateTime.Now.Date.AddDays(30),
-                vacina = "Raiva",
-                laboratorio = "Zoetis"
-            },
-            new Pet
-            {
-                tutor = "Lucia Duclos",
-                tel = 139815153315,
-                nomePet = "Domingos",
-                especie = "Gato",
-                raca = "SRD",
-                idade = 5,
-                sexo = "Macho",
-                peso = 2.5f,
-                dataVacinacao = DateTime.Now.Date.AddDays(-360),
-                dataProximaVacinacao = DateTime.Now.Date.AddDays(30),
-                vacina = "Raiva",
-                laboratorio = "Zoetis"
-            }
-        };
-	}
 
     private async void OnItemSelected(Pet selectedPet)
     {
         await Navigation.PushAsync(new NewService(selectedPet));
     }
 
-    protected void cadastros()
+    protected async void cadastros()
     {
-        PetsCollectionView.ItemsSource = CreatePet();
+        var Cadastros = await ServicoModel.ListarPetETutor();
+        PetsCollectionView.ItemsSource = Cadastros;
         IsRefreshing = false;
     }
 

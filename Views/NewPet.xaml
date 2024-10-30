@@ -6,40 +6,42 @@
              Background="#C6EDF5">
     
     <StackLayout>
-            <Entry Placeholder="Nome do Tutor" Grid.Row="0" IsPassword="False" PlaceholderColor="Gray" Margin="10" TextColor="Black"/>
-            <Entry Placeholder="Numero" Grid.Row="0" IsPassword="False" PlaceholderColor="Gray" Margin="10" TextColor="Black"/>
-            <Entry Placeholder="Microchip" Grid.Row="0" IsPassword="False" PlaceholderColor="Gray" Margin="10" TextColor="Black"/>
-            <Entry Placeholder="Nome do Pet" IsPassword="False" PlaceholderColor="Gray" Grid.Row="1" Margin="10" TextColor="Black"/>
-            <Picker x:Name="especia" Title="Selecione a Espécie" TextColor="Black" TitleColor="Gray" Margin="10">
+        <Frame Padding="10" HasShadow="True" Margin="10,5" CornerRadius="10" BorderColor="LightGray">
+            <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+                
+            <Entry x:Name="EntryTutor" Placeholder="Nome do Tutor" Grid.Row="0" IsPassword="False" PlaceholderColor="Gray" Margin="5" TextColor="Black"/>
+            <Entry x:Name="EntryCel" Placeholder="Celular" Keyboard="Numeric" Grid.Row="1" IsPassword="False" PlaceholderColor="Gray" Margin="5" TextColor="Black"/>
+            <Entry x:Name="EntryMicrochip" Placeholder="Microchip" Grid.Row="2" IsPassword="False" PlaceholderColor="Gray" Margin="5" TextColor="Black"/>
+            <Entry x:Name="EntryNomePet" Placeholder="Nome do Pet" IsPassword="False" PlaceholderColor="Gray" Grid.Row="3" Margin="5" TextColor="Black"/>
+            <Picker x:Name="especiePicker" Grid.Row="4" Title="Selecione a Espécie" TextColor="Black" TitleColor="Gray" Margin="5">
                 <Picker.Items>
                     <x:String>Cachorro</x:String>
                     <x:String>Gato</x:String>
-                    <x:String>Periquito</x:String>
                 </Picker.Items>
             </Picker>
-            <Picker x:Name="raca" Title="Selecione a Raça" TextColor="Black" TitleColor="Gray" Margin="10">
-                <Picker.Items>
-                    <x:String>Jack Russel</x:String>
-                    <x:String>Spitz</x:String>
-                    <x:String>lulu da pomerania</x:String>
-                    <x:String>Shitzu</x:String>
-                </Picker.Items>
-            </Picker>
-            <Entry Placeholder="Idade do Pet" IsPassword="False" PlaceholderColor="Gray" Grid.Row="1" Margin="10" TextColor="Black"/>
-            <Entry Placeholder="Peso" IsPassword="False" PlaceholderColor="Gray" Grid.Row="1" Margin="10" TextColor="Black"/>
-            <Picker x:Name="sexagem" Title="Selecione o Sexo" TextColor="Black" TitleColor="Gray" Margin="10">
+            <Picker x:Name="racaPicker" Grid.Row="5" Title="Selecione a Raça" TextColor="Black" TitleColor="Gray" Margin="5">
+                    <Picker.Items>
+                    </Picker.Items>
+                </Picker>
+                <Button Text="+" WidthRequest="40" BackgroundColor="LightGray" HeightRequest="35" Padding="2" Clicked="OnAddRacaClicked" Grid.Row="5" Grid.Column="1"/>
+                <Entry x:Name="EntryIdadePet" Placeholder="Idade do Pet" Keyboard="Numeric" Grid.Row="6" IsPassword="False" PlaceholderColor="Gray" Margin="5" TextColor="Black"/>
+            <Entry x:Name="entryPeso" Placeholder="Peso" Keyboard="Numeric" IsPassword="False" PlaceholderColor="Gray" Grid.Row="7" Margin="5" TextColor="Black"/>
+                <Picker x:Name="sexagemPicker" Grid.Row="8" Title="Selecione o Sexo" TextColor="Black" TitleColor="Gray" Margin="10">
                 <Picker.Items>
                     <x:String>Macho</x:String>
                     <x:String>Femea</x:String>
                 </Picker.Items>
             </Picker>
+            </Grid>
+        </Frame>
         <Button Text="Cadastrar" 
                 Padding="20" 
                 FontSize="18" 
                 Grid.Row="1" 
                 Margin="20" 
                 CornerRadius="20" 
-                BackgroundColor="#51EABB"/>
+                BackgroundColor="#51EABB"
+                Clicked="OnAddPetAndTutor"/>
     </StackLayout>
 
 </ContentPage>

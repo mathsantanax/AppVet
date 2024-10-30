@@ -1,5 +1,6 @@
 ﻿using AppVet.DTO;
 using AppVet.Interface;
+using AppVet.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,19 +11,37 @@ namespace AppVet.Models
 {
     class ServicoModel : IService
     {
-        public void CadastrarPetETutor(Pet pet)
+        private readonly Data _data;
+
+        public ServicoModel()
         {
-            
+            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "appvet.db3");
+            _data = new Data(dbPath);
+
+        }
+        public async void CadastrarPetETutor(Tutor tutor)
+        {
+            await _data.SaveTutor(tutor);
         }
 
-        public void CadastrarServico(Pet pet)
+        public async void CadastrarRaca(Raca raca)
+        {
+            await _data.SaveRaca(raca);
+        }
+
+        public void CadastrarServico(Service service)
         {
             throw new NotImplementedException();
         }
 
-        public List<Pet> ListarPetETutor()
+        public async Task<List<Tutor>> ListarPetETutor()
         {
-            throw new NotImplementedException();
+            return await _data.ListarTutor();
+        }
+
+        public async Task<List<Raca>> ListarRaca()
+        {
+            return await _data.ListarRaca();
         }
 
         public List<Service> ListarServico()

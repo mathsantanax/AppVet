@@ -8,10 +8,10 @@
     Shell.TabBarBackgroundColor="#5894E0"
     Shell.TabBarForegroundColor="Black"
     Shell.TabBarTitleColor="Black">
-
+    
     <TabBar>
         <Tab Title="Home" Icon="house.png">
-             <ShellContent 
+            <ShellContent 
                 ContentTemplate="{DataTemplate local:Home}"
                 Route="Home"/>
         </Tab>
@@ -22,5 +22,4 @@
                 Route="Service"/>
         </Tab>
     </TabBar>
-
 </Shell>

@@ -1,17 +1,22 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AppVet.DTO
 {
-    record PetServico
+    public record PetServico
     {
-        public string tutor { get; set; } = default!;
-        public string nomePet { get; set; } = default!;
-        public string especie { get; set; } = default!;
+
+        [PrimaryKey, AutoIncrement] 
+        public int Id { get; set; }
+        Pet Pet { get; set; } = default!;
+        Tutor Tutor { get; set; } = default!;
         public DateTime dataVacinacao { get; set; } = default!;
+        public DateTime dataProximaVacinacao { get; set; } = default!;
         public Service Service { get; set; } = default!;
     }
 }

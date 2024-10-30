@@ -9,9 +9,11 @@ namespace AppVet.Interface
 {
     interface IService
     {
-        public void CadastrarPetETutor(Pet pet);
-        public void CadastrarServico(Pet pet);
-        List<Pet> ListarPetETutor();
+        public void CadastrarPetETutor(Tutor tutor);
+        public void CadastrarServico(Service service);
+        public void CadastrarRaca(Raca raca);
+        Task<List<Tutor>> ListarPetETutor();
+        Task<List<Raca>> ListarRaca();
         List<Service> ListarServico();
         List<PetServico> ListarServicoPet();
     }

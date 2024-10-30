@@ -75,6 +75,7 @@
                                 </Grid>
                                 
                                 <Grid ColumnDefinitions="Auto,Auto" HorizontalOptions="Center" Padding="5">
+                                    <Label Text="Selecione a data da próxima vacina"/>
                                     <DatePicker MinimumDate="{Binding MinDate}"
                                         MaximumDate="{Binding MaxDate}"
                                         Date="{Binding SelectedDate}" TextColor="Gray" FontSize="18" FontAttributes="Bold"/>

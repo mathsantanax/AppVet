@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace AppVet.DTO
 {
-    public record Service
+    public record Raca
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string Vacina { get; set; } = default!;
-        public string Laboratorio { get; set; } = default!;
-        public decimal Price { get; set; }
+        public string raca { get; set; }
     }
 }
