@@ -1,84 +1,92 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:AppVet.Views"
+             xmlns:ModelsView="clr-namespace:AppVet.ModelView"
              x:Class="AppVet.Views.Home"
              Title="Vet Home"
              Background="#C6EDF5">
+    <ContentPage.BindingContext>
+        <ModelsView:HomeModelView/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="ContentPetAndTutor">
+            
+            <Frame  Padding="10" HasShadow="True" Margin="10,5" CornerRadius="10" BorderColor="LightGray">
+                
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.ItemSelectedCommand}" 
+                                            CommandParameter="{Binding .}" Tapped="OnItemTapped"/>
+                </Frame.GestureRecognizers>
+                
+                <Grid ColumnDefinitions="Auto, Auto, Auto" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
+
+                    <Image HeightRequest="80" WidthRequest="80" Grid.RowSpan="6" Margin="0,0,10,0"
+                                           VerticalOptions="CenterAndExpand" Aspect="AspectFill">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="CACHORRO">
+                                <Setter Property="Source" Value="cachorro.png" />
+                            </DataTrigger>
+                            <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="GATO">
+                                <Setter Property="Source" Value="gato.png" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1">
+                        <Label Text="Pet: " FontSize="20" FontAttributes="Bold" TextColor="Orange" Grid.Column="0" Grid.Row="0"/>
+                        <Label Text="{Binding nomePet}" FontSize="20" FontAttributes="Bold" TextColor="Orange" Grid.Column="1" Grid.Row="0"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1" Grid.Row="1">
+                        <Label Text="Raça: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
+                        <Label Text= "{Binding raca}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="1" VerticalOptions="Start"/>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1" Grid.Row="2">
+                        <Label Text="Tutor: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
+                        <Label Text="{Binding tutor}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="2" />
+                    </Grid>
+
+                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1" Grid.Row="4">
+                        <Label Text="Peso: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
+                        <Label Text="{Binding peso}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="4" />
+                    </Grid>
+
+                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1" Grid.Row="5">
+                        <Label Text="Ultima Vacinação: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
+                        <Label Text="{Binding dataVacinacao, StringFormat='{0:dd/MM/yyyy}'}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="5" />
+                    </Grid>
+
+                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1" Grid.Row="6">
+                        <Label Text="Próxima Vacinação: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
+                        <Label Text="{Binding dataProximaVacinacao, StringFormat='{0:dd/MM/yyyy}'}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="6"/>
+                    </Grid>
+                </Grid>
+            </Frame>
+        </DataTemplate>
+    </ContentPage.Resources>
 
     <ContentPage.Content>
         <Grid ColumnDefinitions="*, Auto">
             <RefreshView Grid.ColumnSpan="1" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}" RefreshColor="Teal" >
-                <CollectionView x:Name="PetsCollectionView" ItemsSource="{Binding GetCadastros}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame Padding="10" HasShadow="True" Margin="10,5" CornerRadius="10" BorderColor="LightGray">
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:Home}}, Path=BindingContext.ItemSelectedCommand}" 
-                                                          CommandParameter="{Binding .}" Tapped="OnItemTapped"/>
-                                </Frame.GestureRecognizers>
-                                <Grid ColumnDefinitions="Auto, Auto, Auto" RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, Auto">
-
-                                    <Image HeightRequest="80" WidthRequest="80" Grid.RowSpan="6" Margin="0,0,10,0"
-                                           VerticalOptions="CenterAndExpand" Aspect="AspectFill">
-                                        <Image.Triggers>
-                                            <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="CACHORRO">
-                                                <Setter Property="Source" Value="cachorro.png" />
-                                            </DataTrigger>
-                                            <DataTrigger TargetType="Image" Binding="{Binding especie}" Value="GATO">
-                                                <Setter Property="Source" Value="gato.png" />
-                                            </DataTrigger>
-                                        </Image.Triggers>
-                                    </Image>
-                                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1">
-                                        <Label Text="Pet: " FontSize="20" FontAttributes="Bold" TextColor="Orange" Grid.Column="0" Grid.Row="0"/>
-                                        <Label Text="{Binding nomePet}" FontSize="20" FontAttributes="Bold" TextColor="Orange" Grid.Column="1" Grid.Row="0"/>
-                                    </Grid>
-
-                                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1" Grid.Row="1">
-                                        <Label Text="Raça: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
-                                        <Label Text= "{Binding raca}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="1" VerticalOptions="Start"/>
-                                    </Grid>
-
-                                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1" Grid.Row="2">
-                                        <Label Text="Tutor: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
-                                        <Label Text="{Binding tutor}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="2" />
-                                    </Grid>
-
-                                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1" Grid.Row="4">
-                                        <Label Text="Peso: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
-                                        <Label Text="{Binding peso}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="4" />
-                                    </Grid>
-
-                                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1" Grid.Row="5">
-                                        <Label Text="Ultima Vacinação: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
-                                        <Label Text="{Binding dataVacinacao, StringFormat='{0:dd/MM/yyyy}'}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="5" />
-                                    </Grid>
-
-                                    <Grid ColumnDefinitions="Auto,Auto" Grid.Column="1" Grid.Row="6">
-                                        <Label Text="Próxima Vacinação: " FontSize="16" FontAttributes="Bold" TextColor="Gray" Grid.Column="0" Grid.Row="0"/>
-                                        <Label Text="{Binding dataProximaVacinacao, StringFormat='{0:dd/MM/yyyy}'}" FontSize="16" TextColor="Gray" Grid.Column="1" Grid.Row="6"/>
-                                    </Grid>
-
-                                </Grid>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
+                <CollectionView x:Name="PetsCollectionView" ItemsSource="{Binding petAndTutors}" SelectionMode="Single" SelectedItem="{Binding SelectedPet, Mode=TwoWay}" ItemTemplate="{StaticResource ContentPetAndTutor}">
+                    
                 </CollectionView>
             </RefreshView>
-            <Button Text="Novo"
-                FontSize="15"
-                FontAttributes="Bold"
-                TextColor="White"
-                BackgroundColor="#51EABB"
-                CornerRadius="50"
-                HeightRequest="75"
-                WidthRequest="75"
-                HorizontalOptions="End"
-                VerticalOptions="End"
-                Margin="20"
-                Grid.Row="1"
-                Clicked="AddPet"/>
-
+            <Button
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    BackgroundColor="#51EABB"
+                    CornerRadius="50"
+                    HeightRequest="75"
+                    WidthRequest="75"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    ImageSource="plus.png"
+                    Padding="20"
+                    Margin="20"
+                    Grid.Row="1"
+                    Clicked="AddPet"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
