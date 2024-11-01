@@ -1,6 +1,4 @@
-using AppVet.DTO;
 using System.ComponentModel;
-using AppVet.Models;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Input;
@@ -11,7 +9,6 @@ namespace AppVet.Views;
 
 public partial class Home : ContentPage
 {
-    public ICommand ItemSelectedCommand { get; }
     public Home()
     {
         InitializeComponent();

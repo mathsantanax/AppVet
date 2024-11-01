@@ -68,8 +68,14 @@
 
     <ContentPage.Content>
         <Grid ColumnDefinitions="*, Auto">
-            <RefreshView Grid.ColumnSpan="1" IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}" RefreshColor="Teal" >
-                <CollectionView x:Name="PetsCollectionView" ItemsSource="{Binding petAndTutors}" SelectionMode="Single" SelectedItem="{Binding SelectedPet, Mode=TwoWay}" ItemTemplate="{StaticResource ContentPetAndTutor}">
+            <RefreshView Grid.ColumnSpan="1" 
+                         IsRefreshing="{Binding IsRefreshing}" 
+                         Command="{Binding RefreshCommand}" 
+                         RefreshColor="Teal" >
+
+                <CollectionView x:Name="PetsCollectionView" 
+                                ItemsSource="{Binding petAndTutors}" 
+                                ItemTemplate="{StaticResource ContentPetAndTutor}">
                     
                 </CollectionView>
             </RefreshView>

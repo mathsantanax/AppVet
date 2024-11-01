@@ -36,19 +36,46 @@ namespace AppVet.ModelView
         public HomeModelView()
         {
             petAndTutors = new ObservableCollection<PetAndTutor>();
-            GetRegister();
+            GetRegisterAsync();
             ItemSelectedCommand = new Command<PetAndTutor>(OnItemSelected);
         }
-        private async void OnItemSelected(PetAndTutor selectedPet)
+
+        private PetAndTutor selectedPet;
+        public PetAndTutor SelectedPet
         {
-            if (selectedPet != null)
+            get => selectedPet;
+            set
             {
-                Debug.WriteLine($"Item selecionado: {selectedPet.nomePet}");
-                await Application.Current.MainPage.Navigation.PushAsync(new NewService(selectedPet));
+                if (selectedPet != value)
+                {
+                    selectedPet = value;
+                    OnPropertyChanged();
+                    // Aqui você pode chamar o comando de seleção se necessário
+                    ItemSelectedCommand.Execute(selectedPet);
+                }
             }
         }
 
-        async void GetRegister()
+        private async void OnItemSelected(PetAndTutor selectedPet)
+        {
+            try
+            {
+                if (selectedPet != null)
+                {
+                    await Application.Current.MainPage.Navigation.PushAsync(new NewService(selectedPet));
+                    selectedPet = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Logar o erro para diagnóstico
+                Debug.WriteLine($"Erro ao selecionar pet: {ex.Message}");
+                // Opcional: Mostre uma mensagem para o usuário
+                await Application.Current.MainPage.DisplayAlert("Erro", $"Ocorreu um problema ao tentar abrir o serviço.{ex.Message}", "OK");
+            }
+        }
+
+        async Task GetRegisterAsync()
         {
             try// tratamento de excecões
             {
@@ -65,8 +92,9 @@ namespace AppVet.ModelView
                             if(getRaca != null)
                             {
                                 // Adiciona o dados a uma lista de pet e tutor
-                                petAndTutors.Add(new PetAndTutor{
-                                   
+                                petAndTutors.Add(new PetAndTutor
+                                {
+
                                     Id = t.Id,
                                     tutor = t.tutor,
                                     tel = t.tel,
@@ -79,6 +107,13 @@ namespace AppVet.ModelView
                                     peso = getPet.peso,
                                     raca = getRaca.raca,
                                     IdRaca = getRaca.Id,
+                                    Laboratorio = "",
+                                    dataProximaVacinacao = DateTime.Now.Date.AddDays(365),
+                                    dataVacinacao = DateTime.Now.Date,
+                                    Vacina = "",
+                                    Price = 50,
+                                    IdPetServico = 0,
+                                    IdServico = 0
                                 });
                             }
                         }
@@ -87,16 +122,26 @@ namespace AppVet.ModelView
             }
             catch (Exception ex)
             {
-                throw;
+                Debug.WriteLine($"Erro ao obter registros: {ex.Message}");
             }
         }
 
         async Task RefreshItemsAsync()
         {
             IsRefreshing = true;
-            await Task.Delay(TimeSpan.FromSeconds(RefreshDuration));
-            GetRegister();
-            IsRefreshing = false;
+            try
+            {
+                await Task.Delay(TimeSpan.FromSeconds(RefreshDuration));
+                await GetRegisterAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Erro ao atualizar itens: {ex.Message}");
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -10,6 +10,12 @@ namespace AppVet.ModelView
 {
     public record PetAndTutor
     {
+
+        public DateTime MinDate { get; set; }
+        public DateTime Date { get; set; }
+        public DateTime MaxDate { get; set; }
+        public DateTime SelectedDate { get; set; }
+
         public int Id { get; set; }
         public int IdPet { get; set; }
         public int IdServico { get; set; }
